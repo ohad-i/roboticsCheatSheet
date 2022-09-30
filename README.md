@@ -13,4 +13,6 @@ https://docs.opencv.org/4.x/dc/dbb/tutorial_py_calibration.html
 
 https://learnopencv.com/camera-calibration-using-opencv/
 
+https://learnopencv.com/geometry-of-image-formation/
+
 https://docs.opencv.org/3.4/d9/d0c/group__calib3d.html
