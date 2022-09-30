@@ -14,9 +14,9 @@
 ]{geometry}
 
 
-\title{DH}
-\author{ohadon }
-\date{September 2020}
+\title{RoboticsCheatSheet}
+\author{ohad-i}
+\date{September 2022}
 
 \begin{document}
 
@@ -40,6 +40,7 @@ We can desctibe the new frame (') with the following projection:
 It describes the (') frame completely.
 
 \subsection{Rotation Matrix}
+
 \begin{gather}
     R =
         \begin{bmatrix}
@@ -693,7 +694,7 @@ for $ \nu = 0$ vertor $\vec{r}{}$ is arbitrary (singularity).
 
 %\newpage
 \section{Camera Calibration and 3d reconstruct}
-Camera calibration is the process of estimating the parameters of camera, parameters and coefficients that determine an accurate relationship between \textbf{3D point} in the real world and its corresponding \textbf{2D projection} (pixel) in the image captured by that calibrated camera.\\
+Camera calibration is the process of estimating the parameters of camera, which affect every image no matter the camera pose in the world e.g the camera setup sensor/iris/lens. Parameters and coefficients that determine an accurate relationship between \textbf{3D point} in the real world and its corresponding \textbf{2D projection} (pixel) in the image captured by that calibrated camera.\\
 Two sets of parameters:
 \begin{itemize}
     \item \textbf{Intrinsic Parameters} - camera/lens system:
@@ -702,7 +703,7 @@ Two sets of parameters:
         \item Optical center (center pixel, along the optical axis)
         \item Radial distortion coefficients of the lens.
     \end{itemize}
-    \item \textbf{External parameters} - orientation (rotation and translation) of the camera with respect to some world coordinate system.
+    \item \textbf{Exterinsic parameters} - orientation (rotation and translation) of the camera with respect to some world coordinate system.
 \end{itemize}
 \subsection{Intrinsic parameters}
 $$K = \begin{bmatrix}
@@ -712,7 +713,25 @@ f_x & \gamma & c_x \\
 \end{bmatrix} $$\\
 $f_x, f_y$ - x, y focal lengths (typically the same), in pixels or mm \\
 $c_x, c_y$ - x, y coordinates of the optical axis in the image plane (pixels) \\
-$\gamma$ - skew between the axes, usually 0.
+$\gamma$ - skew between the axes, usually 0.\\
+\textbf{Some geometrical essence}
+\begin{itemize}
+	\item If focal lengths  $f_x, f_y$ is given in $\left[ pixels \right]$ in order to get the focal length in $\left[ mm \right]$ use the following: $f_x\left[ mm \right] = f_x\left[ pixels \right]\times pixelPitch[x]$, where, $pixelPitch[x]$ - is the physical pixel size (on the sensor), the same is for $f_y$.
+	\item focal lengths  $f_x, f_y$  we can calculate the camera $\left[fov\right]$, field of view, using simple geometry.\\
+	in case the focal length is given in pixels:
+	$$fov_{[x]} = 2\times\arctan{\left(\frac{img_{width}\left[pixels\right]}{2\times f_x}\right)} $$
+    $$fov_{[y]} = 2\times\arctan{\left(\frac{img_{height}\left[pixels\right]}{2\times f_y}\right)} $$
+in case the focal length is given in mm, use sensor dimentions:
+	$$fov_{[x]} = 2\times\arctan{\left(\frac{sensor_{width}\left[pixels\right]}{2\times f_x}\right)} $$
+    $$fov_{[y]} = 2\times\arctan{\left(\frac{sensor_{height}\left[pixels\right]}{2\times f_y}\right)} $$   
+    \item $IFOV$ - Instantaneous field of view or (IFOV) is an important calculation in determining how much a single detector pixel can see in terms of field of view (FOV).\\
+    IFOV is the sapatial fov of a single pixel in an image, it is the actual image resolution in terms of angle (and if distance is known, also the actual size of a pixel in the real world), it is roughly  calculates like this, assume uniformly distributed alog the image:
+    $$ifov_{[x]} = \frac{fov_x}{img_{width}[pix]} $$
+    $$ifov_{[y]} = \frac{fov_y}{img_{height}[pix]} $$
+    (why roughly, because in case of wide angle image (big $fov$) it is not uniformly distributed)
+
+\end{itemize}
+
 
 
 
@@ -722,8 +741,6 @@ $\gamma$ - skew between the axes, usually 0.
 \section{DH Recipe}
 The DH operating recipe is as follows:
 \begin{enumerate}
-
-
     \item Find and number consecutively the joint axes; set the directions of axes $z_{0}$, ...,$z_{n-1}$.
     \item Choose frame 0 by locating the
     origin on axis $z_{0}$; axes $x_{0}$ and $y_{0}$ are chosen so as to obtain a right-handed frame. If feasible, it is worth choosing frame 0 to coincide with the base frame.
