@@ -12,7 +12,7 @@
   left=1cm, right=1cm, bottom=0cm, top=1cm,
   columnsep=1cm,
 ]{geometry}
-            
+
 
 \title{DH}
 \author{ohadon }
@@ -41,16 +41,16 @@ It describes the (') frame completely.
 
 \subsection{Rotation Matrix}
 \begin{gather}
-    R = 
+    R =
         \begin{bmatrix}
         \\
         X{'} & Y{'} & Z{'} \\
-        \\ 
+        \\
         \end{bmatrix} =
         \begin{bmatrix}
         x_{x}^{'} & y_{x}^{'} & z_{x}^{'}\\
         x_{y}^{'} & y_{y}^{'} & z_{y}^{'}\\
-        x_{z}^{'} & y_{z}^{'} & z_{z}^{'} 
+        x_{z}^{'} & y_{z}^{'} & z_{z}^{'}
         \end{bmatrix} =
         \begin{bmatrix}
          x{'}_{x}\vec{X} & x{'}_{y}\vec{Y}  & x{'}_{z}\vec{Z}\\
@@ -66,11 +66,11 @@ therefore, rotation matrix properties:
 $$ R{^T}R=I$$
 $$ R{^T}=R{^{-1}}$$
 $$ |\det({R})|=1 $$
-$$ R\in SO(m) $$ 
+$$ R\in SO(m) $$
 
 Special Orthonormal group: real m×m matrices with orthonormal columns and
 determinant=1
- 
+
  \newpage
  \subsection{Rotation along the axis - Elementry Rotations}
  \begin{figure}[h!]
@@ -189,7 +189,7 @@ $$R^{j}_{i}=(R^{i}_{j})^{-1}=(R^{j}_{i})^{T} $$
     \caption{composition}
     \label{fig:sr}
     \end{figure}
-    
+
     \item \textbf{Fixed Frame} Consider the following sequence of rotations:
     \begin{enumerate}
         \item Rotate around $z_0$
@@ -219,7 +219,7 @@ $$R^{0}_2 = R^{0}_1\begin{bmatrix}
 (R^{0}_1)^{-1}RR^{0}_{1}
 \end{bmatrix}  $$
 
-after opening the brackets: 
+after opening the brackets:
 $\left[ R^{0}_1(R^{0}_1)^{-1} = R^{0}_1(R^{0}_1)^{T} = I \right] $
 
 $$R^{0}_2 = RR^{0}_{1}  $$
@@ -243,8 +243,8 @@ Fix frame recipe:
 \begin{itemize}
     \item Eulre angles $(ZYZ) (\phi, \theta,\psi)$
     \begin{enumerate}
-        \item Rotate about Z axis by an angle $\phi, \quad R_z(\phi)$ 
-        \item Rotate about \textbf{current} $y$ axis by an angle $\theta,  \quad R_y(\theta)$ 
+        \item Rotate about Z axis by an angle $\phi, \quad R_z(\phi)$
+        \item Rotate about \textbf{current} $y$ axis by an angle $\theta,  \quad R_y(\theta)$
         \item Rotate about \textbf{current} $z$ axis by an angle $\psi,  \quad R_z(\psi)$
     \begin{figure}[h!]
 \includegraphics[scale=1.5]{euler.png}
@@ -263,7 +263,7 @@ Fix frame recipe:
     \begin{bmatrix}
     C_\theta & 0 & S_\theta \\
     0 & 1 & 0 \\
-    -S_\theta & 0 & C_\theta 
+    -S_\theta & 0 & C_\theta
     \end{bmatrix}
     \begin{bmatrix}
     C_\psi & -S_\psi &  0 \\
@@ -283,14 +283,14 @@ Fix frame recipe:
      \item Rotate about \textbf{fixed} $x$ axis by an angle $\phi, \quad R_{x}(\phi)$
      \item Rotate about \textbf{fixed} $y$ axis by an angle $\theta, \quad R_{y}(\theta)$
      \item Rotate about \textbf{fixed} $z$ axis by an angle $\psi, \quad R_{z}(\psi)$ \\
-(*) Fixed frame(!) multiply in reverse order.      
+(*) Fixed frame(!) multiply in reverse order.
     \begin{figure}[h!]
     \centering
     \includegraphics[scale=1.5]{rollPitchYaw.png}
     \caption{roll-pitch-yaw (bad axis tags... usually the $x$ axis is along the heading of the plane) $(\phi, \theta,\psi)$}
     \label{fig:sr}
     \end{figure}
-    
+
     \begin{multline*}
     R^{0}_{1} = R_{z,\phi}R_{y,\theta}R_{x,\psi} =
     \begin{bmatrix}
@@ -301,7 +301,7 @@ Fix frame recipe:
     \begin{bmatrix}
     C_\theta & 0 & S_\theta \\
     0 & 1 & 0 \\
-    -S_\theta & 0 & C_\theta 
+    -S_\theta & 0 & C_\theta
     \end{bmatrix}
     \begin{bmatrix}
     1 & 0 & 0 \\
@@ -312,7 +312,7 @@ Fix frame recipe:
     \begin{bmatrix}
     C_\phi C_\theta & -S_\phi C_\psi + C_\phi S_\theta S_\psi & S_\phi S_\psi + C_\phi S_\theta C_\psi \\
     S_\phi C_\theta & C_\phi C_\psi + S_\phi S_\theta S_\psi & -C_\phi S_\psi + S_\phi S_\theta C_\psi \\
-    -S_\theta & C_\theta S_\psi & C_\theta C\psi 
+    -S_\theta & C_\theta S_\psi & C_\theta C\psi
     \end{bmatrix}
  \end{multline*}
     \end{itemize}
@@ -323,7 +323,7 @@ Fix frame recipe:
         \item Rotate about \textbf{fixed} $x$ by an angle $\phi$
         \item Rotate about \textbf{fixed} $y$ by an angle $\theta$
         \item Rotate about \textbf{fixed} $z$ by an angle $\psi$\\
-        $$ R = 
+        $$ R =
         \begin{bmatrix}
         r_{11} & r_{12} & r_{13} \\
         r_{21} & r_{22} & r_{23} \\
@@ -331,45 +331,45 @@ Fix frame recipe:
         \end{bmatrix} \xrightarrow[]{} { (\phi,  \theta, \psi) }
         $$
         $$
-        R = 
+        R =
         \begin{bmatrix}
         r_{11} & r_{12} & r_{13} \\
         r_{21} & r_{22} & r_{23} \\
         r_{31} & r_{32} & r_{33}
-        \end{bmatrix} = 
+        \end{bmatrix} =
         \begin{bmatrix}
         C_\phi C_\theta & -S_\phi C_\psi + C_\phi S_\theta S_\psi & S_\phi S_\psi + C_\phi S_\theta C_\psi \\
         S_\phi C_\theta & C_\phi C_\psi + S_\phi S_\theta S_\psi & -C_\phi S_\psi + S_\phi S_\theta C_\psi \\
-        -S_\theta & C_\theta S_\psi & C_\theta C\psi 
+        -S_\theta & C_\theta S_\psi & C_\theta C\psi
         \end{bmatrix}
     $$
     \begin{equation}
     \begin{cases}
          C_\theta S_\psi = r_{32} \\
-         C_\theta C_\psi = r_{13}   
+         C_\theta C_\psi = r_{13}
     \end{cases} =
     \begin{cases}
          C^{2}_\theta S^{2}_\psi = r^{2}_{32} \\
-         C^{2}_\theta C^{2}_\psi = r^{2}_{13}   
+         C^{2}_\theta C^{2}_\psi = r^{2}_{13}
     \end{cases} +
     \end{equation}
-    
-    
+
+
     $$C^{2}_{\theta}(S^{2}_{\psi}+C^{2}_\psi) = r^{2}_{32} + r^{2}_{33} $$
     $$ C_\theta = \pm\sqrt{r^{2}_{32} + r^{2}_{33}} $$
-In case of positive $\theta$    
+In case of positive $\theta$
     \begin{equation}
     \begin{cases}
          C_\phi C_\theta = r_{11} \\
-         S_\pi C_\theta = r_{21}   
+         S_\pi C_\theta = r_{21}
     \end{cases} \implies
      \frac{S_\phi}{C_\phi} = \frac{r_{21} C_\theta}{r_{11} C_\theta}
     \end{equation}
     $$ \phi = Atan2(r_{21},r_{11}) $$
-In case of negative $\theta$ 
+In case of negative $\theta$
     $$ \phi = Atan2(-r_{21},r_{11}) $$
-    
-    
+
+
     \begin{equation}
     \begin{cases}
          C_\theta S_\psi = r_{32} \\
@@ -378,16 +378,16 @@ In case of negative $\theta$
      \psi = Atan2(r_{32}, r_{33} )
     \end{equation}
     (*) all calculation are correct only if $C_\theta \ne 0$\\
-    
+
     In case of $C_\theta = 0$\\
-    
+
      \begin{multline*}
-     R = 
+     R =
         \begin{bmatrix}
         r_{11} & r_{12} & r_{13} \\
         r_{21} & r_{22} & r_{23} \\
         r_{31} & r_{32} & r_{33}
-        \end{bmatrix} = 
+        \end{bmatrix} =
         \begin{bmatrix}
          \cancelto{0}{C_\phi C_\theta}  & -S_\phi C_\psi + C_\phi \cancelto{1}{S_\theta} S_\psi & S_\phi S_\psi + C_\phi \cancelto{1}{S_\theta} C_\psi \\
         \cancelto{0}{S_\phi C_\theta} & C_\phi C_\psi + S_\phi \cancelto{1}{S_\theta} S_\psi & -C_\phi S_\psi + S_\phi \cancelto{1}{S_\theta} C_\psi \\
@@ -407,9 +407,9 @@ In case of negative $\theta$
         \end{bmatrix}
      \end{multline*}
      (*) If $x=(\psi - \phi)$ we can see that we can only find the diff. between the angles.\\
-     
+
      Summary:
-     $for \theta \in (-\frac{\pi}{2}, \frac{\pi}{2})\; (C_{\theta}>0)$  
+     $for \theta \in (-\frac{\pi}{2}, \frac{\pi}{2})\; (C_{\theta}>0)$
      $$ \phi = Atan2(r_{21}, r_{11})$$
      $$ \theta = Atan2(-r_{31}, \sqrt{r^{2}_{32}) + r^{2}_{33}) } $$
      $$ \psi = Atan2(r_{32}, r_{33})$$
@@ -418,7 +418,7 @@ In case of negative $\theta$
  \\
  (*) Limitation - dont rotate twice in a sequence by the same axis e.g XXY...\\
  so we have 12 valid configuration.
-    
+
     \begin{figure}[h!]
     \includegraphics[scale=1.3]{atan2.png}
     \caption{atan2 - definition}
@@ -427,12 +427,12 @@ In case of negative $\theta$
     \end{figure}
     \end{enumerate}
 
- 
+
  % https://en.wikipedia.org/wiki/Euler_angles
  % http://eecs.qmul.ac.uk/~gslabaugh/publications/euler.pdf
 
 \newpage
-\subsection{Angle and axis representation} 
+\subsection{Angle and axis representation}
 \begin{itemize}
     \item \textbf{Non0minimal representation $R(\vec{r},\; \nu )$}
     \item Unit vector $\vec{r} = (r_{x}, \; r_{y}, \; r_{z} )$
@@ -454,7 +454,7 @@ In case of negative $\theta$
 \end{enumerate}
 $$ R(\nu, r)  = R_{z}(\alpha)R_{y}(\beta)R_{z}(\nu)R_{y}(-\beta)R_{z}(-\alpha) $$
 $$
-R(\nu, r) = 
+R(\nu, r) =
 \begin{bmatrix}
 r^{2}_{x}(1-C_{\nu})+C_{\nu} & r_{x}r_{y}(1-C{\nu} ) - r_{z}S){\nu} & r_{x}r_{z}(1-C_{\nu} )+r_{y}S_{\nu} \\
 r_{x}r_{y}(1-C_{\nu})+r_{z}S_{\nu} & r^{2}_{y}(1-C_{\nu})+C_{\nu} & r_{y}r_{z}(1-C_{\nu})-r_{x}S{\nu} \\
@@ -468,7 +468,7 @@ While $\nu=0$ there is singularity, all $R$ matrix is zero.
 \subsubsection{Inverse problem}
 
 $$ \nu = \arccos \left(
-\frac{r_{11}+r_{22}+r_{33}+1}{2}  
+\frac{r_{11}+r_{22}+r_{33}+1}{2}
 \right)
 $$
 $$ r = \frac{1}{2S_{\nu}}
@@ -535,11 +535,11 @@ for $ \nu = 0$ vertor $\vec{r}{}$ is arbitrary (singularity).
     $$ jk=i,\:\: kj=-i $$
     $$ ki=j,\:\: ik=-j $$
     \item Addition:
-    \begin{gather*} 
+    \begin{gather*}
     (q_0+q_1i+q_2j+q_3k) + (p_0+p_1i+p_2j+p_3k) = \\
     = (q_0 + p_0) + (q_1 + p_1)i + (q_2 + p_2)j + (q_3 + p_3)k
     \end{gather*}
-    
+
     \item Multiplication:
     \begin{gather*}
         (q_0+q_1i+q_2j+q_3k)(p_0+p_1i+p_2j+p_3k) = \\
@@ -550,9 +550,9 @@ for $ \nu = 0$ vertor $\vec{r}{}$ is arbitrary (singularity).
         = (q_0p_0 - q_1p_1 + q_2p_2 + q_3p_3) + \\
         (q_0p_1 + q_1p_0 + q_2p_3 - q_3p_2)i + \\
         (q_0p_2 + q_2p_0 - q_1p_3 + q_3p_1)j \\
-        (q_0p_3 + q_3p_0 + q_1p_2 - q_2p_1)k 
+        (q_0p_3 + q_3p_0 + q_1p_2 - q_2p_1)k
     \end{gather*}
-    
+
     \item Quaternion Conjugate: \\
     \begin{gather*}
         q=q_0+Q_1i+q_2j+q_3k\\
@@ -569,7 +569,7 @@ for $ \nu = 0$ vertor $\vec{r}{}$ is arbitrary (singularity).
         \item Rotation = Unit quaternion $q_R:|q_R|=1$
         \item Rotation from frame B to frame A:
         \begin{gather*}
-         q_b = q_Rq_Aq^*_R 
+         q_b = q_Rq_Aq^*_R
         \end{gather*}
         While $q_R$ is a unit quaternion\\
         $q_A \:\: q_B$ are pure quaternions.
@@ -577,11 +577,11 @@ for $ \nu = 0$ vertor $\vec{r}{}$ is arbitrary (singularity).
             q_Rq_Aq^*_R = (q_0 + q_1i + q_2j + q_3k)(xi + yj + zk)(q_0 - q_1i - q_2j - q_3k) = \\
             (x(q^2_0 + q^2_1 - q^2_2 - q^2_3) + 2y(q_1q_2-q_0q_3)+2z(q_0q_2+q_1q_3))i + \\
             (2x(q_0q_3 + q_1q_2)+y(q^2_0 - q^2_1 + q^2_2 - q^2_3) + 2z(q_2q_3-q_0q_1))j + \\
-            (2x(q_1q_3-q_0q_2)+2y(q_0q_1+q_2q_3)+z(q^2_0 - q^2_1 - q^2_2 + q^2_3))k 
+            (2x(q_1q_3-q_0q_2)+2y(q_0q_1+q_2q_3)+z(q^2_0 - q^2_1 - q^2_2 + q^2_3))k
         \end{gather*}
         \item Matrix notation for $q_Rq_Aq^*_R$: $M\cdot(x,y,z)^T$:
         \begin{gather*}
-            M = 
+            M =
           \begin{bmatrix}
             q^2_0 + q^2_1 - q^2_2 - q^2_3 & 2(q_1q_2-q_0q_3) & 2(q_0q_2+q_1q_3) \\
             2(q_0q_3 + q_1q_2) & q^2_0 - q^2_1 + q^2_2 - q^2_3 & 2(q_2q_3-q_0q_1)  \\
@@ -600,7 +600,7 @@ for $ \nu = 0$ vertor $\vec{r}{}$ is arbitrary (singularity).
     \end{itemize}
     \item Rotation Matrix to Quaternion:
     \begin{gather*}
-            R = 
+            R =
         \begin{bmatrix}
             r_{11} & r_{12} & r_{13} \\
             r_{21} & r_{22} & r_{23} \\
@@ -636,7 +636,7 @@ for $ \nu = 0$ vertor $\vec{r}{}$ is arbitrary (singularity).
            ...
         \end{gather*}
         $$ q^2_0 + q^2_1 + q^2_2 + q^2_3 = 1 $$
-    
+
         \item Same quaternion for $(-\vec{r}{}, -\nu), (\vec{r}{}, \nu)$:\textbf{unique!}
         \item $\nu \in [-\pi, \pi]:q_0\geq0$
     \end{itemize}
@@ -674,9 +674,9 @@ for $ \nu = 0$ vertor $\vec{r}{}$ is arbitrary (singularity).
         \end{bmatrix}
         \begin{bmatrix}
         p^1 \\ 1
-        \end{bmatrix} = 
+        \end{bmatrix} =
         \begin{bmatrix}
-        (R^0_1p^1+o^0_1) \\ 
+        (R^0_1p^1+o^0_1) \\
         1
         \end{bmatrix} = \Tilde{p}^0
     \end{gather*}
@@ -691,7 +691,7 @@ for $ \nu = 0$ vertor $\vec{r}{}$ is arbitrary (singularity).
     \end{gather}
     $A^{i-1}_i$ : homogeneuos transformation for point in frame $i$ to the description of the same point in frame $i-1$
 
-%\newpage    
+%\newpage
 \section{Camera Calibration and 3d reconstruct}
 Camera calibration is the process of estimating the parameters of camera, parameters and coefficients that determine an accurate relationship between \textbf{3D point} in the real world and its corresponding \textbf{2D projection} (pixel) in the image captured by that calibrated camera.\\
 Two sets of parameters:
@@ -708,7 +708,7 @@ Two sets of parameters:
 $$K = \begin{bmatrix}
 f_x & \gamma & c_x \\
 0 & f_y & c_y \\
-0 & 0 & 1 
+0 & 0 & 1
 \end{bmatrix} $$\\
 $f_x, f_y$ - x, y focal lengths (typically the same), in pixels or mm \\
 $c_x, c_y$ - x, y coordinates of the optical axis in the image plane (pixels) \\
@@ -717,7 +717,7 @@ $\gamma$ - skew between the axes, usually 0.
 
 
 
- 
+
 \newpage
 \section{DH Recipe}
 The DH operating recipe is as follows:
@@ -725,14 +725,14 @@ The DH operating recipe is as follows:
 
 
     \item Find and number consecutively the joint axes; set the directions of axes $z_{0}$, ...,$z_{n-1}$.
-    \item Choose frame 0 by locating the 
+    \item Choose frame 0 by locating the
     origin on axis $z_{0}$; axes $x_{0}$ and $y_{0}$ are chosen so as to obtain a right-handed frame. If feasible, it is worth choosing frame 0 to coincide with the base frame.
 
 Execute steps 3-5 for $n = 1,\:\dots,\: n - 1$
 
-    \item In order to locate the origin $O_i$: 
+    \item In order to locate the origin $O_i$:
     \begin{enumerate}
-        \item If axes $z_i$ and $z_{i-1}$ are parallel: 
+        \item If axes $z_i$ and $z_{i-1}$ are parallel:
         \begin{enumerate}
             \item If joint $i$ is revolute, locate $O_i$ so that $d_i = 0$
             \item If joint $i$ is prismatic, locate $O_i$ t a reference position for the joint range, e.g., a mechanical limit.
@@ -741,16 +741,16 @@ Execute steps 3-5 for $n = 1,\:\dots,\: n - 1$
     \end{enumerate}
     \item Choose axis $x_{i}$along the common normal to axes $z_{i-1}$ and $z_{i}$ Pointing towards the end-effector.
     \item Choose axis $y_{i}$ so as to obtain a right-handed frame. \\
-    To complete: 
+    To complete:
     \item Choose frame n:
     \begin{enumerate}
-        \item If joint $n$ is revolute, align $z_{n}$with $z_{n-1}$ 
+        \item If joint $n$ is revolute, align $z_{n}$with $z_{n-1}$
         \item If joint $n$ is prismatic, choose $z_{n}$ arbitrarily. \\
         Axis $x_{n}$ s set according to step 4.
     \end{enumerate}
     \item For $i = 1, ... , n$ form the table of parameters $a_i, d_i, \alpha_i, \vartheta_i$
     \item Compute the homogeneous transformation matrices $A_{i-1}^{i}$ for $i = 1, ..., n$
-    \item Compute $T_{0}^{n} = A_{1}^{0}A_{2}^{1}...A_{n}^{n-1}(q_n)$ 
+    \item Compute $T_{0}^{n} = A_{1}^{0}A_{2}^{1}...A_{n}^{n-1}(q_n)$
     \item Given $T_{0}^{b}$ and $T_{e}^{n}$, compute the direct kinematics function $T_{e}^{b}(q) = T_{0}^{b}T_{n}^{0}(q)T_{e}^{n}$
 \end{enumerate}
 
@@ -803,10 +803,10 @@ Each line on the table is transformed to that matrix:
 
 
 \begin{enumerate}
-    \item Link $l_i$ is between $O_{i-1}$ and  $O_{i}$ 
+    \item Link $l_i$ is between $O_{i-1}$ and  $O_{i}$
     \item The lines $_i$ on D-H table are per \textbf{link!}
     \item Common normal is between $z_{i-1}$ and $z_{i}$ (right handed),
-        
+
 \end{enumerate}
 
 
