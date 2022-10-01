@@ -729,7 +729,8 @@ in case the focal length is given in mm, use sensor dimentions:
     $$ifov_{[x]} = \frac{fov_x}{img_{width}[pix]} $$
     $$ifov_{[y]} = \frac{fov_y}{img_{height}[pix]} $$
     (why roughly, because in case of wide angle image (big $fov$) it is not uniformly distributed)
-
+    \item The intrinsic parameters doesn't depend on the scene viewed.
+	\item \textbf{Intrinsic matrix is used to project $3D$ point given in the camera coordinate system to $2D$ pixel coordinates.}
 \end{itemize}
 
 \subsection{Extrinsic parameters}
@@ -812,10 +813,110 @@ Extrinsic parameters represent the pose of the camera in the world, it includes 
     v = \frac{v'}{w'}
     $$
 \end{itemize}
+\subsection{3d reconstruct}
+A point in the world $P_w$ is tranfromed to a pixel $p$:
+$$ sp = A\left[R|t\right]P_w$$
+where:\\
+we consider homogeneous matrix.\\
+$s$ is projective transformation's arbitrary scaling.\\
+$A$ is the camera intrinsic matrix (also known as $K$) \\
+$P_w$ is a $3D$ point in the world coordination\\
+$p$ is a $2D$ pixel in the image plane.
 
+homogenous representation:
+$$ P_c = \begin{bmatrix}
+R & t\\
+0 & 1
+\end{bmatrix}P_w
+$$ 
+$$
+\begin{bmatrix}
+R & t\\
+0 & 1
+\end{bmatrix}
+=
+\begin{bmatrix}
+r_11 & r_12 & r_13 & t_x \\
+r_21 & r_22 & r_23 & t_y \\
+r_31 & r_32 & r_33 & t_z \\
+0 & 0 & 0 &1
+\end{bmatrix}
+$$
 
+$$
+\begin{bmatrix}
+X_c\\Y_c\\Z_c\\1
+\end{bmatrix} = 
+\begin{bmatrix}
+r_11 & r_12 & r_13 & t_x \\
+r_21 & r_22 & r_23 & t_y \\
+r_31 & r_32 & r_33 & t_z \\
+0 & 0 & 0 &1
+\end{bmatrix}
+\begin{bmatrix}
+X_w\\Y_w\\Z_w\\1
+\end{bmatrix}
+$$
+combining all thism we get a way to project $p_w$ to the image plane:
+$$
+Z_c\begin{bmatrix}
+x'\\y'\\1
+\end{bmatrix}
+= \left[R|t\right]\begin{bmatrix}
+X_w\\Y_w\\Z_w\\1
+\end{bmatrix} = 
+\begin{bmatrix}
+r_11 & r_12 & r_13 & t_x \\
+r_21 & r_22 & r_23 & t_y \\
+r_31 & r_32 & r_33 & t_z 
+\end{bmatrix}
+\begin{bmatrix}
+X_w\\Y_w\\Z_w\\1
+\end{bmatrix}
+$$
+with: $x' = \frac{X_c}{Z_c}$ and $y' = \frac{Y_c}{Z_c}$.
 
+put intrinsic and extrinsic togather, $sp=A\left[R|t\right]P_w$ will look like:
+$$
+s\begin{bmatrix}
+u\\v\\1
+\end{bmatrix}=
+\begin{bmatrix}
+f_x & 0 & c_x\\
+0 & f_y & c_y\\
+0 & 0 & 1
+\end{bmatrix}
+\begin{bmatrix}
+r_11 & r_12 & r_13 & t_x \\
+r_21 & r_22 & r_23 & t_y \\
+r_31 & r_32 & r_33 & t_z 
+\end{bmatrix}
+\begin{bmatrix}
+X_w\\Y_w\\Z_w\\1
+\end{bmatrix}
+$$
+short term:
+$$
+\begin{bmatrix}
+u\\v
+\end{bmatrix} = 
+\begin{bmatrix}
+f_x\frac{X_c}{Z_c} + c_x\\
+f_y\frac{Y_c}{Z_c} + c_y
+\end{bmatrix}
+\:\:; Z_c\neq0
+$$
 
+\subsection{Camera parameters summary}
+In respect to 3 frames, two $3D$ frames and one $2D$ frame:
+\begin{enumerate}
+	\item World frame $O \: \lbrace3D\rbrace$ 
+	\item Camera frame $O' \: \lbrace3D\rbrace$
+	\item Image frame $C  \: \lbrace2D\rbrace$
+\end{enumerate}
+the purpose of the extrinsic-intrinsic system is to transform point in the world the follwing process:
+$$ P_{world} \Rightarrow \left[\textrm{using \textbf{extrinsic} matrix}\right] \Rightarrow P_{camera} \Rightarrow \left[\textrm{using \textbf{intrinsic} matrix}\right] \Rightarrow p_{image} $$ 
+and vice versa.
 
 
 \newpage
