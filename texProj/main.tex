@@ -725,10 +725,16 @@ in case the focal length is given in mm, use sensor dimentions:
 	$$fov_{[x]} = 2\times\arctan{\left(\frac{sensor_{width}\left[pixels\right]}{2\times f_x}\right)} $$
     $$fov_{[y]} = 2\times\arctan{\left(\frac{sensor_{height}\left[pixels\right]}{2\times f_y}\right)} $$   
     \item $IFOV$ - Instantaneous field of view or (IFOV) is an important calculation in determining how much a single detector pixel can see in terms of field of view (FOV).\\
-    IFOV is the sapatial fov of a single pixel in an image, it is the actual image resolution in terms of angle (and if distance is known, also the actual size of a pixel in the real world), it is roughly  calculates like this, assume uniformly distributed alog the image:
+    IFOV is the sapatial fov of a single pixel in an image, it is the actual image resolution in terms of angle (and if distance is known, also the actual size of a pixel in the real world), it is roughly  calculates like this, assume uniformly distributed alog the image, approximation:
     $$ifov_{[x]} = \frac{fov_x}{img_{width}[pix]} $$
     $$ifov_{[y]} = \frac{fov_y}{img_{height}[pix]} $$
-    (why roughly, because in case of wide angle image (big $fov$) it is not uniformly distributed)
+    (why roughly, because in case of wide angle image (big $fov$) it is not uniformly distributed)\\
+    More accurate $ifov$ calculations, where $f_x,f_y$ is given in $[m]$:
+    $$ifov_{[x]} = 2\times\arctan{\left(\frac{pixel_{width}\left[\mu m\right]}{2\times f_x}\right)} $$   
+    $$ifov_{[y]} = 2\times\arctan{\left(\frac{pixel_{height}\left[\mu m\right]}{2\times f_y}\right)} $$
+    or:
+    $$ifov_x = \frac{pixel_{width}\left[\mu m\right]}{2\times f_x}$$   
+    $$ifov_y = \frac{pixel_{height}\left[\mu m\right]}{2\times f_y}$$   
     \item The intrinsic parameters doesn't depend on the scene viewed.
 	\item \textbf{Intrinsic matrix is used to project $3D$ point given in the camera coordinate system to $2D$ pixel coordinates.}
 \end{itemize}
@@ -842,6 +848,7 @@ r_31 & r_32 & r_33 & t_z \\
 0 & 0 & 0 &1
 \end{bmatrix}
 $$
+>>>>>>> 39c76a899caa99a1278c5a8892c7867f6568b0f0
 
 $$
 \begin{bmatrix}
@@ -918,6 +925,21 @@ the purpose of the extrinsic-intrinsic system is to transform point in the world
 $$ P_{world} \Rightarrow \left[\textrm{using \textbf{extrinsic} matrix}\right] \Rightarrow P_{camera} \Rightarrow \left[\textrm{using \textbf{intrinsic} matrix}\right] \Rightarrow p_{image} $$ 
 and vice versa.
 
+\subsection{Degrees-Radians and FOV}
+$$ 2\pi=360^\circ \; ; \; \pi=180^\circ \; ; \; \frac{\pi}{2}=90^\circ \; ; \; \frac{\pi}{4}=45^\circ$$
+$$rad2deg = 180/\pi$$
+$$deg2rad = \pi/180$$
+
+$$1[mrad] = 0.001[rad]$$
+$$0.001 \times 180/\pi = 0.0573^\circ$$
+
+Field of view $[fov]$ is usually mesured in radians, because the convinence translation using the following, $1[mrad]\Leftrightarrow1[m]\textrm{[footprint in 1 km]} $ is :
+
+$$1[mrad] \rightarrow 1[m] \textrm{ in 1000 [m]}$$
+$$1[mrad] \rightarrow 0.1[m] \textrm{ in 100 [m]}$$
+
+
+
 
 \newpage
 \section{DH Recipe}
@@ -974,6 +996,8 @@ $\vartheta_i$  & \begin{tabular}[c]{@{}l@{}}Angle between axes $x_{i-1}$ and $x_
 \caption{sample Robot}
 \label{fig:sr}
 \end{figure}
+
+
 
 \section{DH Helper}
 
